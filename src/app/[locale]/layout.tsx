@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import '../globals.css';
@@ -33,13 +34,17 @@ export default async function LocaleLayout({
 
   const dictionary = await getDictionary(locale);
 
-  return (
-    <html lang={params.locale}>
-      <body className="flex flex-col min-h-screen">
+return (
+  <html lang={params.locale}>
+    <body className="flex flex-col min-h-screen">
+      <Suspense fallback={<div>Chargement...</div>}>
         <Navbar locale={locale} messages={dictionary.nav} />
-        <main className="flex-grow pt-20">{children}</main>
+      </Suspense>
+      <main className="flex-grow pt-20">{children}</main>
+      <Suspense fallback={<div>Chargement...</div>}>
         <Footer locale={locale} messages={dictionary.footer} />
-      </body>
-    </html>
-  );
+      </Suspense>
+    </body>
+  </html>
+);
 }
