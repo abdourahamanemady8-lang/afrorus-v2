@@ -83,6 +83,7 @@ export default async function TemoignagesPage({
               {temoignages.map((item: any) => (
                 <TestimonialCard
                   key={item.id}
+                  id={item.id}
                   titre={item[`titre_${locale}`] || item.titre}
                   categorie={dictionary.testimonials.categories[item.categorie as keyof typeof dictionary.testimonials.categories] || item.categorie}
                   citationAfricain={item[`citation_africain_${locale}`] || item.citation_africain}

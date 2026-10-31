@@ -1,4 +1,8 @@
+import ReactionBar from './ReactionBar';
+import ShareButtons from './ShareButtons';
+
 interface TestimonialCardProps {
+  id: string | number; // 👈 AJOUT IMPORTANT : On ajoute l'ID
   titre: string;
   categorie: string;
   citationAfricain: string;
@@ -11,6 +15,7 @@ interface TestimonialCardProps {
 }
 
 export default function TestimonialCard({
+  id, // 👈 On le récupère ici
   titre,
   categorie,
   citationAfricain,
@@ -58,6 +63,14 @@ export default function TestimonialCard({
           <span className="text-gray-400 text-sm italic">{noVideoLabel}</span>
         )}
       </div>
+
+      {/* 👇 C'EST ICI QU'ON AJOUTE LA BARRE DE RÉACTIONS 👇 */}
+      <ReactionBar temoignageId={id} />
+          <ShareButtons 
+      url="https://afrorus-v2.vercel.app/fr/temoignages" 
+      title={titre} 
+    />
+      
     </article>
   );
 }
